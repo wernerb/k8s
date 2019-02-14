@@ -1,4 +1,4 @@
-./kubectl config set-cluster myfirstcluster --server=http://172.17.8.1001:8080 --insecure-skip-tls-verify=true
+./kubectl config set-cluster myfirstcluster --server=http://172.17.8.101:8080 --insecure-skip-tls-verify=true
 ./kubectl config set-context local --cluster=myfirstcluster
 ./kubectl config use-context local
 
