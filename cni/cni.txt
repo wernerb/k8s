@@ -20,4 +20,4 @@ cm:
 
 kubelet:
 --allow-privileged
-
+--network-plugin=cni
