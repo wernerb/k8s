@@ -1,0 +1,23 @@
+openssl req -new -key server.key -out server.csr -config csr.conf
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key \
+ -CAcreateserial -out server.crt -days 10000 \
+ -extensions v3_ext -extfile csr.conf
+sudo cp ca.crt /srv/kubernetes/
+sudo cp server.crt /srv/kubernetes/
+
+./kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(./kubectl version | base64 | tr -d '\n')"
+
+api server:
+          "--allow-privileged=true",
+          "--tls-cert-file=/srv/kubernetes/server.crt",
+          "--tls-private-key-file=/srv/kubernetes/server.key",
+          "--client-ca-file=/srv/kubernetes/ca.crt"
+
+cm:
+
+          "--root-ca-file=/srv/kubernetes/ca.crt",
+          "--client-ca-file=/srv/kubernetes/ca.crt"
+
+kubelet:
+--allow-privileged
+
