@@ -1,0 +1,4 @@
+kubectl apply -f kube-dns.yml
+git clone https://github.com/coredns/deployment.git
+cd deployment/kubernetes
+./deploy.sh -s | kubectl apply -f -
