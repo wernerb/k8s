@@ -14,7 +14,9 @@
           "/hyperkube",
           "controller-manager",
           "--master=172.17.8.101:8080",
-          "--service-account-private-key-file=/srv/kubernetes/server.key"
+          "--service-account-private-key-file=/srv/kubernetes/server.key",
+          "--root-ca-file=/srv/kubernetes/ca.crt",
+          "--client-ca-file=/srv/kubernetes/ca.crt"
         ],
         "volumeMounts": [
           {
