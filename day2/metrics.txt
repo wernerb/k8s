@@ -1,0 +1,23 @@
+sudo cp admin.* /srv/kubernetes
+
+#On actual clusters don't use admin credentials for this :-)
+api:
+          "--requestheader-client-ca-file=/srv/kubernetes/ca.crt",
+          "--requestheader-allowed-names=admin",
+          "--requestheader-extra-headers-prefix=X-Remote-Extra-",
+          "--requestheader-group-headers=X-Remote-Group",
+          "--requestheader-username-headers=X-Remote-User",
+          "--proxy-client-cert-file=/srv/kubernetes/admin.crt",
+          "--proxy-client-key-file=/srv/kubernetes/admin.key"
+
+
+git clone https://github.com/kubernetes-incubator/metrics-server.git
+kubectl apply -f deploy/1.8+
+
+kubectl edit deployment -n kube-system metrics-server
+
+Just below image: 
+
+        command:
+        - /metrics-server
+        - --kubelet-insecure-tls
