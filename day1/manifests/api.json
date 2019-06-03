@@ -9,7 +9,7 @@
     "containers": [
       {
         "name": "kube-apiserver",
-        "image": "k8s.gcr.io/hyperkube:v1.13.3",
+        "image": "k8s.gcr.io/hyperkube:v1.14.0",
         "command": [
           "/hyperkube",
           "apiserver",
