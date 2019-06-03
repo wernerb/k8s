@@ -1,9 +1,0 @@
-openssl genrsa -out admin.key 2048
-openssl req -new -key admin.key -out admin-csr.pem -subj "/CN=admin/O=system:masters"
-openssl x509 -req -in admin-csr.pem -CA ca.crt -CAkey ca.key -CAcreateserial -out admin.crt -days 10000 -extensions v3_ext -extfile csr.conf
-
-kubectl config set-cluster myfirstcluster-secure --server=https://172.17.8.101:6443 --insecure-skip-tls-verify=true
-kubectl config set-credentials admin --client-certificate=/home/core/admin.crt --client-key=/home/core/admin.key
-kubectl config set-context secure --cluster=myfirstcluster-secure --user=admin
-kubectl config use-context secure
-

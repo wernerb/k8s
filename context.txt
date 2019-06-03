@@ -1,7 +1,0 @@
-./kubectl config set-cluster myfirstcluster --server=http://172.17.8.101:8080 --insecure-skip-tls-verify=true
-./kubectl config set-context local --cluster=myfirstcluster
-./kubectl config use-context local
-
-sudo cp ~/.kube/config /var/lib/kubelet/kubeconfig
-
-sudo ./hyperkube kubelet --pod-manifest-path=/etc/kubernetes/manifests/ --kubeconfig=/var/lib/kubelet/kubeconfig

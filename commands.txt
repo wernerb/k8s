@@ -1,3 +1,0 @@
-docker run -d  --net=host k8s.gcr.io/etcd:3.3.10-0  /usr/local/bin/etcd
-
- sudo ./hyperkube kubelet --pod-manifest-path=/etc/kubernetes/manifests/
