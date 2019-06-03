@@ -14,4 +14,4 @@ kubectl config set-context local --cluster=myfirstcluster
 kubectl config use-context local
 sudo mkdir -p /var/lib/kubelet
 sudo cp ~/.kube/config /var/lib/kubelet/kubeconfig
-
+sudo mkdir -p /etc/kubernetes/manifests
