@@ -1,6 +1,8 @@
+#!/bin/sh
+
 docker run -d  --net=host k8s.gcr.io/etcd:3.3.10-0  /usr/local/bin/etcd
 
-wget https://dl.k8s.io/v1.13.3/kubernetes-server-linux-amd64.tar.gz
+wget https://dl.k8s.io/v1.14.0/kubernetes-server-linux-amd64.tar.gz
 tar -xzvf kubernetes-server-linux-amd64.tar.gz
 sudo mkdir -p /opt/bin
 sudo cp kubernetes/server/bin/hyperkube /opt/bin
@@ -29,20 +31,8 @@ sudo cp server.crt /srv/kubernetes/
 sudo mkdir -p /etc/kubernetes/manifests
 sudo cp manifests/* /etc/kubernetes/manifests
 
-Kubelet run command
-#sudo hyperkube kubelet --pod-manifest-path=/etc/kubernetes/manifests/ --kubeconfig=/var/lib/kubelet/kubeconfig --hostname-override=172.17.8.101 --allow-privileged  --network-plugin=cni --cluster-dns=10.0.0.86 
-Kube proxy run command
-#sudo kube-proxy --master=http://172.17.8.101:8080
+echo Kubelet run command
+echo sudo hyperkube kubelet --pod-manifest-path=/etc/kubernetes/manifests/ --kubeconfig=/var/lib/kubelet/kubeconfig --hostname-override=172.17.8.101 --allow-privileged  --network-plugin=cni --cluster-dns=10.0.0.86 
+echo Kube proxy run command
+echo sudo kube-proxy --master=http://172.17.8.101:8080
 
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
-
-wget https://github.com/containernetworking/plugins/releases/download/v0.7.4/cni-plugins-amd64-v0.7.4.tgz
-tar -xzvf cni-plugins-amd64-v0.7.4.tgz
-sudo mkdir -p /opt/cni/bin
-sudo cp loopback /opt/cni/bin/
-sudo cp portmap /opt/cni/bin/
-
-kubectl apply -f kube-dns.yml
-git clone https://github.com/coredns/deployment.git
-cd deployment/kubernetes
-./deploy.sh -s | kubectl apply -f -
