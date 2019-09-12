@@ -2,7 +2,7 @@
 
 docker run -d  --net=host k8s.gcr.io/etcd:3.3.10-0  /usr/local/bin/etcd
 
-wget https://dl.k8s.io/v1.14.0/kubernetes-server-linux-amd64.tar.gz
+wget https://dl.k8s.io/v1.13.3/kubernetes-server-linux-amd64.tar.gz
 tar -xzvf kubernetes-server-linux-amd64.tar.gz
 sudo mkdir -p /opt/bin
 sudo cp kubernetes/server/bin/hyperkube /opt/bin
