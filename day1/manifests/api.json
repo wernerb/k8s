@@ -2,7 +2,8 @@
   "kind": "Pod",
   "apiVersion": "v1",
   "metadata": {
-    "name": "kube-apiserver"
+    "name": "kube-apiserver",
+    "namespace": "kube-system"
   },
   "spec": {
     "hostNetwork": true,
@@ -15,8 +16,8 @@
           "apiserver",
           "--etcd-servers=http://127.0.0.1:2379",
           "--token-auth-file=/dev/null",
-          "--insecure-bind-address=172.17.8.101",
-          "--advertise-address=172.17.8.101",
+          "--insecure-bind-address=0.0.0.0",
+          "--advertise-address=0.0.0.0",
           "--allow-privileged=true",
           "--tls-cert-file=/srv/kubernetes/server.crt",
           "--tls-private-key-file=/srv/kubernetes/server.key",

@@ -2,7 +2,8 @@
   "kind": "Pod",
   "apiVersion": "v1",
   "metadata": {
-    "name": "kube-controller-manager"
+    "name": "kube-controller-manager",
+    "namespace": "kube-system"
   },
   "spec": {
     "hostNetwork": true,
@@ -13,7 +14,7 @@
         "command": [
           "/hyperkube",
           "controller-manager",
-          "--master=172.17.8.101:8080",
+          "--master=master:8080",
           "--service-account-private-key-file=/srv/kubernetes/server.key",
           "--root-ca-file=/srv/kubernetes/ca.crt",
           "--client-ca-file=/srv/kubernetes/ca.crt"
